@@ -1,10 +1,12 @@
 // import './App.css'
 
+import Home from "./components/layout/Home"
+
 function App() {
 
   return (
     <>
-    <h1>Welcome</h1>
+      <Home />
     </>
   )
 }
