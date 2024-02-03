@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import ReactDOM from "react-dom"
+import Ecomctx from "../store/Ecomctx"
 
-const cartElements = [  
+const cartElements = [
 
     {
 
@@ -40,10 +42,26 @@ const cartElements = [
 
 ]
 
-
+const Cartitem = (props) => {
+    const c = props.c
+    return (
+        <tr className="border-bottom text-wrap">
+            <td>
+                <img width={60} src={c.imageUrl} />
+                {c.title}</td>
+            <td className="text-center">{c.price}</td>
+            <td className="text-center">{c.quantity}
+                <button className="p-1 bg-danger text-white rounded">remove</button>
+            </td>
+        </tr>
+    )
+}
 
 
 const CartDisplay = (props) => {
+
+    const ctx = useContext(Ecomctx)
+
     return (
         <div className="bg-dark text-white mx-1 position-fixed bottom-0 end-0 z-3 border p-2 w-25">
             <div className="p-2">
@@ -58,22 +76,12 @@ const CartDisplay = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {cartElements.map((c, i) => {
-                            return (
-                                <tr className="border-bottom text-wrap">
-                                    <td>
-                                        <img width={60} src={c.imageUrl} />
-                                        {c.title}</td>
-                                    <td className="text-center">{c.price}</td>
-                                    <td className="text-center">{c.quantity}
-                                    <button className="p-1 bg-danger text-white rounded">remove</button>
-                                    </td>
-                                </tr>
-                            )
+                        {ctx.cart.map((c, i) => {
+                            return <Cartitem key={i} c={c} />
                         })}
                     </tbody>
                 </table>
-                <h4 className="text-end mb-5 ">Total : Rs 1000 /-</h4>
+                <h4 className="text-end mb-5 ">Total : Rs {ctx.totalamount} /-</h4>
                 <button className="position-absolute p-1 rounded m-2 bottom-0 end-0 bg-success text-white">PURCHASE</button>
             </div>
         </div>
@@ -84,7 +92,7 @@ const CartDisplay = (props) => {
 
 const CartComponent = (props) => {
     return (
-        ReactDOM.createPortal(<CartDisplay cartHandler={props.cartHandler}/>, document.getElementById('ovlay'))
+        ReactDOM.createPortal(<CartDisplay cartHandler={props.cartHandler} />, document.getElementById('ovlay'))
     )
 }
 
