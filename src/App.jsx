@@ -4,6 +4,7 @@ import Home from "./components/layout/Home"
 import EcomctxProvider from "./store/EcomctxProvider"
 import Store from "./components/layout/Store"
 import Contactus from "./components/layout/Contactus"
+import ProductDetails from "./components/layout/ProductDetails"
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <Home /> },
@@ -22,6 +23,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
           <Route path="/contactus" element={<Contactus />} />
+          <Route path="/prod/:p" element={<ProductDetails />} />
         </Routes>
       </BrowserRouter>
       {/* <RouterProvider router={router} /> */}
