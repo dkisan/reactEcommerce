@@ -46,7 +46,7 @@ const initialstate = {
 
     ],
     cart: [],
-    idToken: '',
+    idToken: null,
     totalamount: 0,
     noofcartitem: 0
 }

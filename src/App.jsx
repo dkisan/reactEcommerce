@@ -6,6 +6,8 @@ import Store from "./components/layout/Store"
 import Contactus from "./components/layout/Contactus"
 import ProductDetails from "./components/layout/ProductDetails"
 import Login from "./components/layout/Login"
+import { useContext } from "react"
+import Ecomctx from "./store/Ecomctx"
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <Home /> },
@@ -15,6 +17,7 @@ import Login from "./components/layout/Login"
 // ])
 
 function App() {
+  const ctx = useContext(Ecomctx)
 
   return (
     <EcomctxProvider>

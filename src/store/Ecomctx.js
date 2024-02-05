@@ -5,7 +5,7 @@ const Ecomctx = React.createContext({
     product: [],
     totalamount: 0,
     noofcartitem: 0,
-    idToken: '',
+    idToken: null,
     addtocartHandler: () => { },
     addIdtoken: () => { }
 })
