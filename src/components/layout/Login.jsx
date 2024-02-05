@@ -28,6 +28,7 @@ const Login = () => {
             .then(async res => {
                 if (res.ok) {
                     const data = await res.json()
+                    localStorage.setItem('eemail',emailRef.current.value)
                     ctx.addIdtoken(data.idToken)
                     navigate('/store')
 

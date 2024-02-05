@@ -1,6 +1,8 @@
 import { useReducer } from "react"
 import Ecomctx from "./Ecomctx"
 
+const idToken = localStorage.getItem('idToken')
+
 const initialstate = {
     product: [
 
@@ -46,7 +48,7 @@ const initialstate = {
 
     ],
     cart: [],
-    idToken: null,
+    idToken: idToken,
     totalamount: 0,
     noofcartitem: 0
 }
@@ -54,6 +56,10 @@ const initialstate = {
 const ecomreducer = (state, action) => {
 
     if (action.type === 'addtocart') {
+
+        let crudurl = 'https://crudcrud.com/api/c09bffc67e324b0da348021c800d5442'
+        let email = localStorage.getItem('eemail').split('@')
+
         const isPresent = state.cart.findIndex(c => c.title === action.item.title)
         let noofcartitem = state.noofcartitem + 1
         if (isPresent >= 0) {
@@ -61,6 +67,28 @@ const ecomreducer = (state, action) => {
             const update = [...state.cart]
             let quantity = update[isPresent].quantity + 1
             update[isPresent] = { ...update[isPresent], quantity: quantity }
+
+            fetch(`${crudurl}/${email[0]}`, {
+                method: 'POST',
+                body: JSON.stringify(update),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                mode: 'no-cors'
+            })
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(err => {
+                    console.log(err.message)
+                    return
+                })
+
+
             return {
                 product: state.product,
                 cart: update,
@@ -69,6 +97,27 @@ const ecomreducer = (state, action) => {
                 noofcartitem: noofcartitem
             }
         }
+        let cartT = state.cart.concat(action.item)
+        fetch(`${crudurl}/${email[0]}`, {
+            method: 'POST',
+            body: JSON.stringify(cartT),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            mode: 'no-cors'
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err.message)
+                return
+            })
+
         return {
             product: state.product,
             cart: state.cart.concat(action.item),
