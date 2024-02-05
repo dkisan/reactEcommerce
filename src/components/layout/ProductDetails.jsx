@@ -19,8 +19,8 @@ const ProductDetails = () => {
                 <div className="w-50 m-auto p-4 d-flex">
                     <img src={prod.imageUrl} alt="" />
                     <div className="d-flex flex-column mx-5">
-                    <h4>{prod.title} </h4>
-                    <h6>Price : Rs. {prod.price} /-</h6>
+                        <h4>{prod.title} </h4>
+                        <h6>Price : Rs. {prod.price} /-</h6>
                     </div>
                 </div>
             </div>

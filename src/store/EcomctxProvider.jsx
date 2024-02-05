@@ -46,6 +46,7 @@ const initialstate = {
 
     ],
     cart: [],
+    idToken: '',
     totalamount: 0,
     noofcartitem: 0
 }
@@ -63,6 +64,7 @@ const ecomreducer = (state, action) => {
             return {
                 product: state.product,
                 cart: update,
+                idToken: state.idToken,
                 totalamount: state.totalamount + +action.item.price,
                 noofcartitem: noofcartitem
             }
@@ -70,8 +72,20 @@ const ecomreducer = (state, action) => {
         return {
             product: state.product,
             cart: state.cart.concat(action.item),
+            idToken: state.idToken,
             totalamount: state.totalamount + +action.item.price,
             noofcartitem: noofcartitem
+        }
+    }
+
+    if (action.type === 'addToken') {
+        localStorage.setItem('idToken', action.token)
+        return {
+            product: state.product,
+            cart: state.cart,
+            idToken: action.token,
+            totalamount: state.totalamount,
+            noofcartitem: state.noofcartitem
         }
     }
 
@@ -85,12 +99,18 @@ const EcomctxProvider = (props) => {
         dispatch({ type: 'addtocart', item: item })
     }
 
+    const addIdtoken = (token) => {
+        dispatch({ type: 'addToken', token: token })
+    }
+
     const ecomctxhandler = {
         product: ecomctx.product,
         cart: ecomctx.cart,
         totalamount: ecomctx.totalamount,
+        idToken: ecomctx.idToken,
         noofcartitem: ecomctx.noofcartitem,
-        addtocartHandler: addtocartHandler
+        addtocartHandler: addtocartHandler,
+        addIdtoken: addIdtoken
     }
 
     return (

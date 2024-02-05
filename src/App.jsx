@@ -5,6 +5,7 @@ import EcomctxProvider from "./store/EcomctxProvider"
 import Store from "./components/layout/Store"
 import Contactus from "./components/layout/Contactus"
 import ProductDetails from "./components/layout/ProductDetails"
+import Login from "./components/layout/Login"
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <Home /> },
@@ -23,6 +24,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
           <Route path="/contactus" element={<Contactus />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/prod/:p" element={<ProductDetails />} />
         </Routes>
       </BrowserRouter>

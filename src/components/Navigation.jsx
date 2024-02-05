@@ -9,6 +9,7 @@ const Navigation = (props) => {
                 <li className="list-inline-item px-4"><NavLink to={'/store'} className={nav => nav.isActive ? 'link-opacity-100 fw-bold':'text-white nav-link fw-bold'}>STORE</NavLink></li>
                 <li className="list-inline-item px-4"><NavLink to={'/about'} className={nav => nav.isActive ? 'link-opacity-100 fw-bold':'text-white nav-link fw-bold'}>ABOUT</NavLink></li>
                 <li className="list-inline-item px-4"><NavLink to={'/contactus'} className={nav => nav.isActive ? 'link-opacity-100 fw-bold':'text-white nav-link fw-bold'}>CONTACT US</NavLink></li>
+                <li className="list-inline-item px-4"><NavLink to={'/login'} className={nav => nav.isActive ? 'link-opacity-100 fw-bold':'text-white nav-link fw-bold'}>LOGIN</NavLink></li>
             </ul>
             <CartButton cartHandler={props.cartHandler} />
         </div>
